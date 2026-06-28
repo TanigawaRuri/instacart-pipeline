@@ -1,0 +1,89 @@
+version: 2
+models: 
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: order_number
+        tests:
+          - not_null
+      - name: order_day_of_week
+        tests:
+          - not_null
+      - name: order_hour
+        tests:
+          - not_null
+
+  - name: stg_aisles
+    columns:
+      - name: aisle_id
+        tests:
+         - unique
+         - not_null
+      - name: aisle
+        tests:
+         - not_null
+  
+  - name: stg_departments
+    columns:
+      - name: department_id
+        tests:
+          - unique
+          - not_null
+      - name: department
+        tests:
+          - not_null
+
+  - name: stg_order_products
+    columns:
+     - name: order_id
+       tests:
+        - not_null
+        - relationships:
+            arguments:
+              to: ref('stg_orders')
+              field: order_id
+
+     - name: product_id
+       tests:
+        - not_null
+        - relationships:
+            arguments:
+              to: ref('stg_products')
+              field: product_id
+
+     - name: add_to_cart_order
+       tests:
+        - not_null
+     - name: reordered
+       tests:
+        - not_null
+
+  - name: stg_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        tests:
+          - not_null
+      - name: aisle_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_aisles')
+                field: aisle_id
+      - name: department_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_departments')
+                field: department_id

@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+ - name: marts
+   database: INSTACART
+   schema: marts
+   tables:
+    - name: dim_aisles
+    - name: dim_department
+    - name: dim_product
+    - name: fact_orders
+    - name: fact_order_items
+    - name: mart_basket_analysis
+    - name: mart_customer_retention
+    - name: mart_hourly_patterns
+    - name: mart_product_preformance

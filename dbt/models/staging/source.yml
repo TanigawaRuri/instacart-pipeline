@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+ - name: raw
+   database: INSTACART
+   schema: raw
+   tables:
+    - name: orders
+    - name: products
+    - name: order_products
+    - name: aisles
+    - name: departments
